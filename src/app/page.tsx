@@ -324,13 +324,34 @@ export default function Dashboard() {
             </svg>
           </div>
           <h3 className="text-lg font-medium text-navy-700 mb-1">No prospects yet</h3>
-          <p className="text-navy-500 text-sm mb-4">Get started by adding your first contractor prospect.</p>
-          <button
-            onClick={() => setShowModal(true)}
-            className="px-4 py-2 bg-warm-500 text-white font-medium rounded-lg hover:bg-warm-600 text-sm"
-          >
-            Add First Prospect
-          </button>
+          <p className="text-navy-500 text-sm mb-4">Get started by loading the Matt Joblon introductions or adding a prospect manually.</p>
+          <div className="flex items-center justify-center gap-3">
+            <button
+              onClick={async () => {
+                try {
+                  const res = await fetch('/api/seed', { method: 'POST' });
+                  const data = await res.json();
+                  if (res.ok) {
+                    fetchProspects();
+                  } else {
+                    alert(data.error || 'Failed to seed data');
+                  }
+                } catch (err) {
+                  console.error('Seed error:', err);
+                  alert('Failed to seed data');
+                }
+              }}
+              className="px-4 py-2 bg-navy-800 text-white font-medium rounded-lg hover:bg-navy-900 text-sm"
+            >
+              Load Matt Joblon Introductions
+            </button>
+            <button
+              onClick={() => setShowModal(true)}
+              className="px-4 py-2 bg-warm-500 text-white font-medium rounded-lg hover:bg-warm-600 text-sm"
+            >
+              Add Prospect Manually
+            </button>
+          </div>
         </div>
       ) : (
         <div className="bg-white rounded-xl shadow-sm overflow-hidden">

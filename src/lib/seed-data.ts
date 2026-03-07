@@ -1,0 +1,186 @@
+export interface SeedProspect {
+  name: string;
+  company: string;
+  email: string;
+  phone: string;
+  status: string;
+  project_requirements: string;
+  introduction_date: string;
+  source_email_thread: string;
+  upcoming_meeting_date: string | null;
+  upcoming_meeting_notes: string;
+  initial_notes: string[];
+}
+
+export const seedProspects: SeedProspect[] = [
+  {
+    name: "Brian Weinmaster",
+    company: "Alliance Construction",
+    email: "bfweinmaster@allianceconstruction.com",
+    phone: "307-214-3612",
+    status: "Proposal Sent",
+    project_requirements: "General interest in AI/agentic digital labor for construction operations. Initial call completed March 6 — Alliance is a strong fit. Proposal being drafted.",
+    introduction_date: "2026-03-05",
+    source_email_thread: "Matt Joblon intro email 3/5/26. Brian responded same day expressing interest. Call scheduled and completed 3/6 at 9 AM. Luke sending initial proposal early next week.",
+    upcoming_meeting_date: null,
+    upcoming_meeting_notes: "Proposal to be sent early week of 3/9. Follow up after delivery.",
+    initial_notes: [
+      "Matt Joblon intro sent 3/5 at 3:52 PM. Brian responded quickly — 'I'm always interested in learning more. A lot of AI chatter out there nowadays.' Offered to meet the next morning.",
+      "Call scheduled for 3/6 at 9:00 AM MT. Brian confirmed.",
+      "Call completed 3/6. Luke: 'Alliance is a great company and we're excited about the opportunity to work with you.' Initial proposal to go out early next week. Luke shared direct number: 530-318-1059.",
+    ],
+  },
+  {
+    name: "Charlie Pappas",
+    company: "Spyder Construction",
+    email: "cpappas@spydercon.com",
+    phone: "720-618-5264",
+    status: "Meeting Scheduled",
+    project_requirements: "To be discussed at intro meeting. Charlie is CEO — open to learning how RUH.AI can help streamline processes and reduce costs.",
+    introduction_date: "2026-03-05",
+    source_email_thread: "Matt Joblon intro email 3/5/26 at 3:54 PM. Charlie responded warmly same evening. Scheduling handled through Ashleigh Hartley (EA). Meeting confirmed 3/13 at noon MT.",
+    upcoming_meeting_date: "2026-03-13T12:00:00",
+    upcoming_meeting_notes: "Intro meeting confirmed for Friday 3/13 at noon MT. Calendar invite sent by Luke. Ashleigh Hartley (EA) coordinated scheduling: ahartley@spydercon.com, 720-415-4643.",
+    initial_notes: [
+      "Matt Joblon intro sent 3/5 at 3:54 PM. Charlie responded: 'If Matt says it's worth a conversation, that's good enough for me.' Moved Matt to BCC.",
+      "Luke proposed times: Tue 3/10 (9am or 4pm), Wed 3/11 (11-1pm), Fri 3/13 (10am).",
+      "Ashleigh Hartley (EA) jumped in to schedule. 3/13 at 10am initially proposed but Luke had a conflict. Counter-offered 9am or noon.",
+      "Meeting confirmed: Friday 3/13 at noon MT. Calendar invite sent.",
+    ],
+  },
+  {
+    name: "Brent Haselden",
+    company: "Haselden Builders",
+    email: "BrentHaselden@haselden.com",
+    phone: "720-341-7990",
+    status: "Meeting Scheduled",
+    project_requirements: "To be discussed. Brent is President — coordinating with CJ Harvey to find meeting times.",
+    introduction_date: "2026-03-05",
+    source_email_thread: "Matt Joblon intro email 3/5/26 at 3:51 PM to both CJ Harvey and Brent Haselden. Brent responded 3/6 — will coordinate calendars with CJ and send times early next week.",
+    upcoming_meeting_date: null,
+    upcoming_meeting_notes: "Brent getting with CJ Harvey to find times. Expect meeting options early week of 3/9. CJ Harvey: CJHarvey@haselden.com",
+    initial_notes: [
+      "Matt Joblon intro sent 3/5 at 3:51 PM to Brent Haselden (President) and CJ Harvey. Marked High Importance.",
+      "Brent responded 3/6 at 12:26 PM: 'Let me get with CJ and find a few times that work for our calendars and get something over to you early next week.' Moved Matt to BCC.",
+      "Luke confirmed: 'Sounds great, Brent - looking forward to it.'",
+    ],
+  },
+  {
+    name: "Matt Cornwell",
+    company: "ECC Exteriors",
+    email: "matt@ecc-exteriors.com",
+    phone: "303-668-4023",
+    status: "Contacted",
+    project_requirements: "Interested in operational efficiency. CC'd Scott Anundsen (VP of Ops) — signals this may be an ops-focused engagement.",
+    introduction_date: "2026-03-05",
+    source_email_thread: "Matt Joblon intro email 3/5/26 at 3:55 PM. Matt Cornwell responded 3/6 at 9:01 AM, cc'd VP of Ops Scott Anundsen. Luke proposed 3 meeting times.",
+    upcoming_meeting_date: null,
+    upcoming_meeting_notes: "Luke proposed: Tue 3/10 at 12pm, Wed 3/11 at 11am, or Fri 3/13 at 2pm. Awaiting confirmation. Scott Anundsen (VP Ops) also included.",
+    initial_notes: [
+      "Matt Joblon intro sent 3/5 at 3:55 PM.",
+      "Matt Cornwell responded 3/6 at 9:01 AM: 'We are always looking for ways to become more efficient.' CC'd Scott Anundsen, VP of Ops.",
+      "Luke proposed meeting times: Tue 3/10 at 12:00 PM, Wed 3/11 at 11:00 AM, Fri 3/13 at 2:00 PM. Awaiting response.",
+    ],
+  },
+  {
+    name: "Austin Blevins",
+    company: "Crossland Construction",
+    email: "ablevins@crossland.com",
+    phone: "",
+    status: "Contacted",
+    project_requirements: "To be discussed. No response yet to scheduling outreach.",
+    introduction_date: "2026-03-05",
+    source_email_thread: "Matt Joblon intro email 3/5/26 at 3:56 PM. Luke reached out 3/6 proposing Wed 3/11 at 2pm. No reply captured yet.",
+    upcoming_meeting_date: null,
+    upcoming_meeting_notes: "Luke proposed Wednesday 3/11 at 2pm. Awaiting response from Austin.",
+    initial_notes: [
+      "Matt Joblon intro sent 3/5 at 3:56 PM.",
+      "Luke moved Matt to BCC and reached out 3/6 at 10:32 AM: proposed Wednesday 3/11 at 2pm. Awaiting Austin's response.",
+    ],
+  },
+  {
+    name: "Matthew Archuletta",
+    company: "The Beck Group",
+    email: "MatthewArchuletta@beckgroup.com",
+    phone: "720-273-2406",
+    status: "Contacted",
+    project_requirements: "To be discussed. Matthew is Regional Director — Denver office at 1001 17th Street, Suite 100, Denver, CO 80202.",
+    introduction_date: "2026-03-05",
+    source_email_thread: "Matt Joblon intro email 3/5/26 at 3:53 PM. Matthew responded same evening, shared contact info. Luke left voicemail 3/6 morning.",
+    upcoming_meeting_date: null,
+    upcoming_meeting_notes: "Luke left voicemail 3/6 at ~8:15 AM. Asked Matthew to call back (530-318-1059) or send times for next week.",
+    initial_notes: [
+      "Matt Joblon intro sent 3/5 at 3:53 PM.",
+      "Matthew responded 3/5 at 8:03 PM: 'Please reach out when you can and we can get something set up. I look forward to hearing more.' Shared cell: 720-273-2406.",
+      "Luke left voicemail 3/6 at ~8:15 AM. Asked Matthew to call back or send times for next week.",
+    ],
+  },
+  {
+    name: "Rick L. Kinning",
+    company: "RK Industries",
+    email: "Rick.Kinning@rkindustries.com",
+    phone: "303-881-4851",
+    status: "Contacted",
+    project_requirements: "Rick (CEO/Chairman) indicated this doesn't fall under him directly — forwarding to appropriate internal team. May be a different division or ops lead.",
+    introduction_date: "2026-03-05",
+    source_email_thread: "Matt Joblon intro email 3/5/26 at 3:58 PM. Rick responded same day — forwarding internally. Luke acknowledged and is standing by.",
+    upcoming_meeting_date: null,
+    upcoming_meeting_notes: "Waiting for Rick to connect Luke with the appropriate internal contact. No meeting scheduled yet.",
+    initial_notes: [
+      "Matt Joblon intro sent 3/5 at 3:58 PM.",
+      "Rick responded 3/5 at 4:32 PM: 'This part of our business does not fall under me, but I will forward this note to the appropriate people for consideration. Stay tuned!!'",
+      "Luke acknowledged: 'Sounds like a plan, I'll hang tight.' Waiting for internal routing.",
+    ],
+  },
+  {
+    name: "Scott Thorson",
+    company: "Oakwood Homes",
+    email: "SThorson@oakwoodhomesco.com",
+    phone: "",
+    status: "Contacted",
+    project_requirements: "To be discussed. Scott responded positively to intro — scheduling a meeting for next week.",
+    introduction_date: "2026-03-05",
+    source_email_thread: "Matt Joblon intro email 3/5/26 at 3:57 PM. Scott responded same evening. Luke proposed meeting next week (M,T,W,F midday — Thursday full).",
+    upcoming_meeting_date: null,
+    upcoming_meeting_notes: "Luke proposed midday Mon, Tue, Wed, or Fri of week of 3/9 (Thursday full). Awaiting Scott's confirmation.",
+    initial_notes: [
+      "Matt Joblon intro sent 3/5 at 3:57 PM.",
+      "Scott responded 3/5 at 8:55 PM: 'Nice to meet you. I'd love to set something up to chat.'",
+      "Luke proposed meeting next week: midday Monday, Tuesday, Wednesday, or Friday (Thursday is full). Awaiting confirmation.",
+    ],
+  },
+  {
+    name: "David Ellena",
+    company: "Taurus Builders",
+    email: "davidellena@taurus-builders.com",
+    phone: "303-513-8614",
+    status: "Contacted",
+    project_requirements: "Informal/warm lead. Dave and Luke already know each other. Planning lunch to discuss. Website: www.buildwithtaurus.com",
+    introduction_date: "2026-03-05",
+    source_email_thread: "Matt Joblon intro email 3/5/26 at 3:56 PM. Dave responded: 'I know Luke well! Hit me up and let's get lunch sometime soon!' Warm existing relationship.",
+    upcoming_meeting_date: null,
+    upcoming_meeting_notes: "Lunch to be scheduled. Luke said 'I'll holler soon.' Informal — no specific date set yet.",
+    initial_notes: [
+      "Matt Joblon intro sent 3/5 at 3:56 PM.",
+      "Dave responded 3/5 at 4:44 PM: 'Thanks Matt, I know Luke well! Luke, hit me up and let's get lunch sometime soon!'",
+      "Luke: 'I love it. Let's do this. I'll holler soon.' Pre-existing warm relationship — lunch to be scheduled.",
+    ],
+  },
+  {
+    name: "Jack Sample",
+    company: "PCL Construction",
+    email: "JSample@pcl.com",
+    phone: "",
+    status: "Contacted",
+    project_requirements: "To be discussed. Jack is traveling — will reach out to schedule chat for the following week.",
+    introduction_date: "2026-03-05",
+    source_email_thread: "Matt Joblon intro email 3/5/26 at 12:51 PM (earliest intro of the batch). Jack responded 3/5 at 4:09 PM — traveling, will set up chat next week.",
+    upcoming_meeting_date: null,
+    upcoming_meeting_notes: "Jack traveling week of 3/3. Said he'll reach out to set up a chat for next week (week of 3/9). Ball is in Jack's court.",
+    initial_notes: [
+      "Matt Joblon intro sent 3/5 at 12:51 PM — this was the first intro sent.",
+      "Jack responded 3/5 at 4:09 PM: 'Pleasure to meet you. I'm traveling this week but let me reach out to you soon and we'll set up a chat for next week.'",
+      "Luke replied: 'The feeling's mutual - sounds great, safe travels.' Ball is in Jack's court to propose times.",
+    ],
+  },
+];
