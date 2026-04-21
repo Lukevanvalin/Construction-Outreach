@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.58",
+    "@anthropic-ai/sdk": "^0.90.0",
     "@neondatabase/serverless": "^1.0.2",
     "@vercel/postgres": "^0.10.0",
     "ai": "^6.0.116",
@@ -28,6 +29,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "ws": "^8.20.0"
   }
 }
