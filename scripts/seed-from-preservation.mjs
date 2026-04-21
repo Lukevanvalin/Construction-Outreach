@@ -117,32 +117,61 @@ for (const p of payload.prospects) {
 }
 console.log(`  contacts: ${contactIdByProspectId.size}`);
 
-// --- Deals (one per prospect)
+// --- Deals
+// An override with `split_into_deals` creates N deals for that prospect's
+// account; preservation notes/transcripts attach to the first deal in the
+// split (typically the one that started earliest — reclassify in UI later).
+// Otherwise one deal per prospect, using the status→stage mapping.
+let dealCount = 0;
 for (const p of payload.prospects) {
   const company = (p.company || 'Unknown').trim();
   const accountId = accountIdByCompany.get(company);
   const override = OVERRIDES[company] || {};
-  const stage = override.stage || STAGE_MAP[p.status] || 'Intro';
-  const type = override.type || 'Build';
   const openedAt = p.introduction_date || p.created_at;
-  const closedAt = stage === 'Lost' ? p.updated_at : null;
-  const notes = [p.project_requirements, p.upcoming_meeting_notes].filter(Boolean).join('\n\n---\n\n');
-  const [d] = await sql`
-    INSERT INTO deals (account_id, name, stage, type, opened_at, closed_at, notes)
-    VALUES (
-      ${accountId},
-      ${p.company + ' — ' + type + ' engagement'},
-      ${stage}::deal_stage,
-      ${type}::deal_type,
-      ${openedAt},
-      ${closedAt},
-      ${notes}
-    )
-    RETURNING id
-  `;
-  dealIdByProspectId.set(p.id, d.id);
+  const baseNotes = [p.project_requirements, p.upcoming_meeting_notes].filter(Boolean).join('\n\n---\n\n');
+
+  if (Array.isArray(override.split_into_deals)) {
+    let firstId = null;
+    for (const d of override.split_into_deals) {
+      const dealNotes = [d.notes, baseNotes].filter(Boolean).join('\n\n---\n\n');
+      const [row] = await sql`
+        INSERT INTO deals (account_id, name, stage, type, opened_at, notes)
+        VALUES (
+          ${accountId},
+          ${d.name},
+          ${d.stage}::deal_stage,
+          ${d.type}::deal_type,
+          ${openedAt},
+          ${dealNotes}
+        )
+        RETURNING id
+      `;
+      if (!firstId) firstId = row.id;
+      dealCount++;
+    }
+    dealIdByProspectId.set(p.id, firstId);
+  } else {
+    const stage = override.stage || STAGE_MAP[p.status] || 'Intro';
+    const type = override.type || 'Build';
+    const closedAt = stage === 'Lost' ? p.updated_at : null;
+    const [row] = await sql`
+      INSERT INTO deals (account_id, name, stage, type, opened_at, closed_at, notes)
+      VALUES (
+        ${accountId},
+        ${p.company + ' — ' + type + ' engagement'},
+        ${stage}::deal_stage,
+        ${type}::deal_type,
+        ${openedAt},
+        ${closedAt},
+        ${baseNotes}
+      )
+      RETURNING id
+    `;
+    dealIdByProspectId.set(p.id, row.id);
+    dealCount++;
+  }
 }
-console.log(`  deals: ${dealIdByProspectId.size}`);
+console.log(`  deals: ${dealCount}`);
 
 // --- Interaction notes → timeline_events
 let notesWritten = 0;

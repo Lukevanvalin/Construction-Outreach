@@ -1,0 +1,35 @@
+{
+  "_doc": "Manual per-account overrides consumed by scripts/seed-from-preservation.mjs. Keyed by company name exactly as it appears in v1 prospects.company. Either provide {stage, type} for a single-deal override, or split_into_deals to create N deals on that account.",
+  "Alliance Construction": {
+    "split_into_deals": [
+      {
+        "name": "Alliance — Claude Code Workshop",
+        "type": "Workshop",
+        "stage": "Proposal Accepted",
+        "notes": "Workshop paid ($5k). Scheduled. Upcoming meeting with David Gallo — week of 2026-04-27. Will move to Delivery/Adoption after workshop is held."
+      },
+      {
+        "name": "Alliance — Agent Build",
+        "type": "Build",
+        "stage": "Negotiation",
+        "notes": "Proposal for full agentic build has been sent. Alliance has not moved forward yet — they want to get a grip on Claude Code via the workshop first, then decide."
+      }
+    ]
+  },
+  "Taurus Builders": {
+    "split_into_deals": [
+      {
+        "name": "Taurus — Claude Code Workshop",
+        "type": "Workshop",
+        "stage": "Adoption",
+        "notes": "Workshop delivered. Team is now actively using Claude Code and becoming effective within their organization."
+      },
+      {
+        "name": "Taurus — Agent Build",
+        "type": "Build",
+        "stage": "Discovery",
+        "notes": "Customer-side discovery. Likely coming back once they identify highest-leverage pain points and biggest levers in their company."
+      }
+    ]
+  }
+}
