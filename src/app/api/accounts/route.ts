@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
              FROM deals d WHERE d.account_id = a.id) AS deals_summary
         FROM accounts a
         WHERE LOWER(a.name) LIKE ${'%' + search.toLowerCase() + '%'}
-        ORDER BY last_activity_at DESC NULLS LAST, a.name ASC
+        ORDER BY a.name ASC
       `
     : await sql`
         SELECT
@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
           (SELECT json_agg(json_build_object('stage', d.stage, 'type', d.type))
              FROM deals d WHERE d.account_id = a.id) AS deals_summary
         FROM accounts a
-        ORDER BY last_activity_at DESC NULLS LAST, a.name ASC
+        ORDER BY a.name ASC
       `;
 
   return NextResponse.json(rows);
