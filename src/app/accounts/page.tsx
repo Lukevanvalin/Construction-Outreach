@@ -17,6 +17,17 @@ interface AccountRow {
   contact_count: number;
   last_activity_at: string | null;
   deals_summary: Array<{ stage: DealStage; type: DealType }> | null;
+  unreviewed_count: number;
+  last_ingest_at: string | null;
+}
+
+function NewBadge() {
+  return (
+    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-100 text-amber-800 border border-amber-300">
+      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+      New info
+    </span>
+  );
 }
 
 function StagePill({ stage, type }: { stage: DealStage; type: DealType }) {
@@ -62,6 +73,20 @@ export default function AccountsPage() {
         />
       </div>
 
+      {(() => {
+        const newCount = accounts.filter((a) => a.unreviewed_count > 0).length;
+        if (newCount === 0) return null;
+        return (
+          <div className="mb-5 flex items-center gap-2 rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+            <span className="text-base">🆕</span>
+            <span>
+              <strong>{newCount}</strong> account{newCount === 1 ? ' has' : 's have'} new information uploaded —
+              open them to review.
+            </span>
+          </div>
+        );
+      })()}
+
       {loading && <div className="text-navy-500 text-sm">Loading…</div>}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -69,11 +94,18 @@ export default function AccountsPage() {
           <Link
             key={a.id}
             href={`/accounts/${a.id}`}
-            className="block bg-white rounded-xl border border-sand-200 p-5 hover:border-warm-400 hover:shadow-sm transition"
+            className={`block rounded-xl border p-5 hover:shadow-sm transition ${
+              a.unreviewed_count > 0
+                ? 'bg-amber-50/60 border-amber-300 hover:border-amber-400'
+                : 'bg-white border-sand-200 hover:border-warm-400'
+            }`}
           >
             <div className="flex items-start justify-between gap-4 mb-3">
               <div className="min-w-0">
-                <h3 className="font-semibold text-navy-900 truncate">{a.name}</h3>
+                <div className="flex items-center gap-2">
+                  <h3 className="font-semibold text-navy-900 truncate">{a.name}</h3>
+                  {a.unreviewed_count > 0 && <NewBadge />}
+                </div>
                 <div className="text-xs text-navy-500 mt-0.5">
                   {[a.primary_domain, a.location, a.industry].filter(Boolean).join(' · ') || '—'}
                 </div>

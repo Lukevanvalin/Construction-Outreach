@@ -75,6 +75,9 @@ export interface Account {
   description: string | null;
   research_json: Record<string, unknown> | null;
   research_updated_at: string | null;
+  last_ingest_at: string | null;
+  last_reviewed_at: string | null;
+  unreviewed_count: number;
   created_at: string;
   updated_at: string;
 }

@@ -73,6 +73,11 @@ export default function AccountDetailPage() {
     }
   };
 
+  const markReviewed = async () => {
+    await fetch(`/api/accounts/${id}/reviewed`, { method: 'POST' });
+    refresh();
+  };
+
   const send = async () => {
     const message = input.trim();
     if (!message || sending) return;
@@ -116,6 +121,25 @@ export default function AccountDetailPage() {
               {deals.map((d) => <StagePill key={d.id} stage={d.stage} type={d.type} />)}
             </div>
           </div>
+
+          {/* New information banner */}
+          {account.unreviewed_count > 0 && (
+            <div className="flex items-center justify-between gap-3 rounded-lg border border-amber-300 bg-amber-50 px-4 py-3">
+              <div className="flex items-center gap-2 text-sm text-amber-900">
+                <span className="text-base">🆕</span>
+                <span>
+                  <strong>New information uploaded</strong> since you last reviewed —
+                  {' '}{account.unreviewed_count} new item{account.unreviewed_count === 1 ? '' : 's'} below.
+                </span>
+              </div>
+              <button
+                onClick={markReviewed}
+                className="text-xs px-3 py-1 bg-amber-500 hover:bg-amber-600 text-white rounded-md whitespace-nowrap"
+              >
+                Mark reviewed
+              </button>
+            </div>
+          )}
 
           {/* Company research */}
           <section className="bg-white border border-sand-200 rounded-xl p-5">
@@ -199,18 +223,26 @@ export default function AccountDetailPage() {
           <section className="bg-white border border-sand-200 rounded-xl p-5">
             <h2 className="text-sm font-semibold text-navy-900 uppercase tracking-wide mb-3">Timeline ({timeline.length})</h2>
             <div className="space-y-2">
-              {timeline.map((t) => (
-                <div key={t.id} className="flex items-start gap-3 text-sm">
+              {timeline.map((t) => {
+                const isNew =
+                  account.unreviewed_count > 0 &&
+                  (!account.last_reviewed_at || new Date(t.created_at) > new Date(account.last_reviewed_at));
+                return (
+                <div key={t.id} className={`flex items-start gap-3 text-sm rounded-md ${isNew ? 'bg-amber-50 -mx-2 px-2 py-1' : ''}`}>
                   <div className="text-xs text-navy-400 w-20 flex-shrink-0 pt-0.5">
                     {format(new Date(t.occurred_at), 'MMM d')}
                   </div>
                   <div className="w-6 flex-shrink-0 text-center">{SOURCE_ICON[t.source] || '·'}</div>
                   <div className="min-w-0">
-                    <div className="text-navy-800">{t.summary}</div>
+                    <div className="text-navy-800">
+                      {isNew && <span className="mr-1.5 text-[10px] font-semibold text-amber-700 align-middle">●&nbsp;NEW</span>}
+                      {t.summary}
+                    </div>
                     <div className="text-[11px] text-navy-400 mt-0.5">{t.source} · {t.kind.replace(/_/g, ' ')}</div>
                   </div>
                 </div>
-              ))}
+                );
+              })}
               {timeline.length === 0 && <div className="text-xs text-navy-400">No events yet.</div>}
             </div>
           </section>
