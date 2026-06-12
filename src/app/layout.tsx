@@ -33,6 +33,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                     Accounts
                   </Link>
                 </li>
+                <li>
+                  <Link href="/gantt" className="flex items-center gap-2 px-3 py-2 rounded-lg text-navy-200 hover:text-white hover:bg-navy-800 text-sm font-medium">
+                    Gantt Chart
+                  </Link>
+                </li>
               </ul>
             </nav>
             <div className="p-4 border-t border-navy-700 text-xs text-navy-400">v2 — schema pivot</div>
